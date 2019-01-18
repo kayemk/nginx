@@ -5,8 +5,9 @@ set -e -x
   echo $(whoami)
   ls -ahl
   pwd
+  CURRENT_DIR=$(pwd)/auto
   apk --update add openssl-dev pcre-dev zlib-dev wget build-base
-  cd stable/auto && \
+  cd $CURRENT_DIR && \
     ./configure \
         --with-http_ssl_module \
         --with-http_gzip_static_module \
