@@ -2,6 +2,5 @@
 
 set -e -x
 
-pushd stable
   echo $(whoami)
-popd
+  apk --update add openssl-dev pcre-dev zlib-dev wget build-base
