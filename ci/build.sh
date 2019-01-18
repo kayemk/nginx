@@ -4,9 +4,10 @@ set -e -x
 
   echo $(whoami)
   ls -ahl
+  pwd
   apk --update add openssl-dev pcre-dev zlib-dev wget build-base
-  cd stable && \
-  ./configure \
+  cd stable/auto && \
+    ./configure \
         --with-http_ssl_module \
         --with-http_gzip_static_module \
         --prefix=/etc/nginx \
