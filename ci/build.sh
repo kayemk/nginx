@@ -5,6 +5,7 @@ set -e -x
   echo $(whoami)
   ls -ahl
   apk --update add openssl-dev pcre-dev zlib-dev wget build-base
+  cd stable && \
   ./configure \
         --with-http_ssl_module \
         --with-http_gzip_static_module \
