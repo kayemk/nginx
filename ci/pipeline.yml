@@ -1,0 +1,37 @@
+resources:
+- name: stable
+  type: git
+  source:
+    uri: https://github.com/kayemk/nginx.git
+    branch: master
+    # private_key: |
+    #  -----BEGIN RSA PRIVATE KEY-----
+    #  -----END RSA PRIVATE KEY-----
+#- name: notify
+#  type: slack-notification
+#  source:
+#    url: ((slack-webhook))
+## Jobs
+jobs:
+- name: Get-Repository
+  serial: true
+  plan:
+  - get: stable
+    resource: stable
+    trigger: true
+- name: Build
+  plan:
+  - get: stable
+    passed: [Get-Repository]
+    trigger: true
+  - task: build
+    file: stable/ci/build.yml
+#    params:
+#- name: Test
+#  plan:
+#  - get: development
+#    passed: [Build]
+#    trigger: true
+#  - task: test
+#    file: development/ci/test.yml
+#    params:
